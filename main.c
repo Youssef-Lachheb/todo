@@ -1,33 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
-
-#define FILENAME "tasks.txt"
-
-void add_task(const char *task) {
-    FILE *file = fopen(FILENAME, "a");
-    if (file == NULL) {
-        printf("Error opening file.\n");
-        return;
-    }
-    fprintf(file, "%s\n", task);
-    fclose(file);
-    printf("Added task: %s\n", task);
-}
-
-void list_tasks() {
-    FILE *file = fopen(FILENAME, "r");
-    if (file == NULL) {
-        printf("No tasks found.\n");
-        return;
-    }
-    char line[256];
-    int count = 1;
-    while (fgets(line, sizeof(line), file)) {
-        printf("%d. %s", count++, line);
-    }
-    fclose(file);
-}
+#include "todo.h"
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -48,3 +21,4 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
+// TODO: add done command 
